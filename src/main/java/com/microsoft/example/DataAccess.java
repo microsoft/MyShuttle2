@@ -22,7 +22,7 @@ public class DataAccess
 {
 	// Some database-specific details we'll need
 	private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
-	private static final String DB_URL = "jdbc:mysql://db:3306/alm";
+	private static final String DB_URL = "jdbc:mysql://db:3306/MyShuttleDb";
 	private static final String DB_USER = "user";
 	private static final String DB_PASS = "password";
 	
@@ -31,7 +31,13 @@ public class DataAccess
 		try {
 			// Bootstrap driver into JVM
 			Class.forName(DB_DRIVER);
-			theConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
+			String conStr = System.getenv("MYSQLCONNSTR_MyShuttleDb");
+			if (conStr == null || conStr.trim().length() == 0) {
+				theConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+			} else {
+				theConnection = DriverManager.getConnection(conStr);
+			}
 		}
 		catch (Exception ex) {
 			// Eh.... just give up
