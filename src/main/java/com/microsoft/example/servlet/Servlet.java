@@ -13,6 +13,13 @@ public class Servlet extends HttpServlet
     {
         PrintWriter pw = response.getWriter();
         pw.println("hello, world");
+        String conStr = System.getenv("MYSQLCONNSTR_MyShuttleDb");
+        pw.println("MYSQLCONNSTR_MyShuttleDb:");
+        pw.println(conStr);
+        
+        String jHome = System.getenv("JAVA_HOME");
+        pw.println("JAVA_HOME:");
+        pw.println(jHome);
         pw.close();
     }
 }
