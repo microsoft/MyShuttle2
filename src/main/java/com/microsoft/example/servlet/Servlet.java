@@ -18,19 +18,16 @@ public class Servlet extends HttpServlet
     {
         PrintWriter pw = response.getWriter();
         pw.println("hello, world");
-        String conStr = System.getenv("MYSQLCONNSTR_MyShuttleDb");
-        pw.println("MYSQLCONNSTR_MyShuttleDb:");
-        pw.println(conStr);
-
-        String username = System.getenv("DbUsername");
-        pw.println("DbUsername:");
-        pw.println(username);
 
         try {
             pw.println("getting fred");
 
             Employee employee = DataAccess.login("fred", "fredpassword");
-            pw.println("Got fred");
+            if (employee == null){
+                pw.println("fred is null - boo");
+            } else {
+                pw.println("Got fred - yay!");
+            }
         } catch (Exception e) {
             pw.println("Exception " + e.toString());
         }
