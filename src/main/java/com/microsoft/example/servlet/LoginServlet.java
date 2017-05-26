@@ -32,6 +32,9 @@ public class LoginServlet extends HttpServlet {
             
             float getTotalDriverFee = DataAccess.getTotalDriverFee(employee.getID());
             session.setAttribute("driverFeeTotal",getTotalDriverFee);
+
+            float getTotalDriverDistance = (float)10.2;
+            session.setAttribute("driverDistanceTotal",getTotalDriverDistance);
             
             request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
         }
