@@ -50,7 +50,7 @@
 
            <tr>
             <td colspan="4" align="right"><strong>Total</strong></td>
-            <td><strong>$ <c:out value="${driverDistanceTotal}"></c:out></strong></td>
+            <td><strong><c:out value="${driverDistanceTotal}"> mi</c:out></strong></td>
             <td><strong>$ <c:out value="${fareTotal}"></c:out></strong></td>
             <td><strong>$ <c:out value="${driverFeeTotal}"></c:out></strong></td>
             <td></td>

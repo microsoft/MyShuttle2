@@ -2,6 +2,7 @@ package com.microsoft.example.servlet;
 
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,11 @@ public class LoginServlet extends HttpServlet {
             float getTotalDriverFee = DataAccess.getTotalDriverFee(employee.getID());
             session.setAttribute("driverFeeTotal",getTotalDriverFee);
 
-            float getTotalDriverDistance = (float)10.2;
+            List<Route> routes = new ArrayList<Route>(fareList.size());
+            for (Fare fare : fareList) {
+                routes.add(new Route(fare.getPickup(), fare.getDropoff()));
+            }
+            int getTotalDriverDistance = DistanceCalculator.getTotalDistance(routes);
             session.setAttribute("driverDistanceTotal",getTotalDriverDistance);
             
             request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
