@@ -31,11 +31,8 @@ public class DataAccess
 		try {
 			// Bootstrap driver into JVM
 			Class.forName(DB_DRIVER);
-			System.out.println("================= initalizing db");
 
-			//String conStr = System.getenv("MYSQLCONNSTR_MyShuttleDb");
-			String conStr = "jdbc:mysql://cd-javav2-mysql.mysql.database.azure.com:3306/MyShuttleDb?verifyServerCertificate=true&useSSL=true&requireSSL=false&user=vmadmin@cd-javav2-mysql&password=W@terfr0ntL0ng";
-			System.out.println("================= constr = " + conStr);
+			String conStr = System.getenv("MYSQLCONNSTR_MyShuttleDb");
 
 			if (conStr == null || conStr.trim().length() == 0) {
 				theConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
