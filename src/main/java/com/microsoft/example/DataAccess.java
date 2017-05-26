@@ -43,7 +43,9 @@ public class DataAccess
 		catch (Exception ex) {
 			// Eh.... just give up
             ex.printStackTrace();
-			System.exit(-1);
+			throw ex;
+			//throw new Exception(ex.toString());
+			//System.exit(-1);
 		}
 	}
 	
