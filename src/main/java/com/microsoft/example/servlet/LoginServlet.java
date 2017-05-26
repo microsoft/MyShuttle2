@@ -1,6 +1,5 @@
 package com.microsoft.example.servlet;
 
-import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.microsoft.example.*;
 import com.microsoft.example.models.*;
+import com.microsoft.exampledep.*;
 
 public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest request,

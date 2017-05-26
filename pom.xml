@@ -22,6 +22,11 @@
   </build>
   <dependencies>
     <dependency>
+      <groupId>com.microsoft.exampledep</groupId>
+      <artifactId>MyShuttleCalc</artifactId>
+      <version>0.0.2</version>
+    </dependency>
+    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>1.2</version>
@@ -51,4 +56,16 @@
     <version>2.48.2</version>
     </dependency>
   </dependencies>
+  <repositories>
+    <repository>
+      <id>nwcadence-visualstudio.com-maven</id>
+      <url>https://nwcadence.pkgs.visualstudio.com/_packaging/Maven/maven/v1</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 </project>
