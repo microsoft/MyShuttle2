@@ -22,7 +22,13 @@ public class Servlet extends HttpServlet
         pw.println("MYSQLCONNSTR_MyShuttleDb:");
         pw.println(conStr);
 
+        String username = System.getenv("DbUsername");
+        pw.println("DbUsername:");
+        pw.println(username);
+
         try {
+            pw.println("getting fred");
+
             Employee employee = DataAccess.login("fred", "fredpassword");
             pw.println("Got fred");
         } catch (Exception e) {
