@@ -25,7 +25,6 @@
       <groupId>com.microsoft.exampledep</groupId>
       <artifactId>MyShuttleCalc</artifactId>
       <version>0.0.2</version>
-      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
