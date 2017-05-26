@@ -32,13 +32,25 @@ public class DataAccess
 			// Bootstrap driver into JVM
 			Class.forName(DB_DRIVER);
 
-			String conStr = System.getenv("MYSQLCONNSTR_MyShuttleDb");
-
-			if (conStr == null || conStr.trim().length() == 0) {
-				theConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-			} else {
-				theConnection = DriverManager.getConnection(conStr);
+			String url = DB_URL;
+			String envUrl = System.getenv("DbUrl");
+			if (envUrl != null || envUrl.trim().length() > 0) {
+				url = envUrl;
 			}
+
+			String user = DB_USER;
+			String envUser = System.getenv("DbUsername");
+			if (envUser != null || envUser.trim().length() > 0) {
+				user = envUser;
+			}
+
+			String pass = DB_PASS;
+			String envPass = System.getenv("DbPassword");
+			if (envPass != null || envPass.trim().length() > 0) {
+				pass = envPass;
+			}
+
+			theConnection = DriverManager.getConnection(url, user, pass);
 		}
 		catch (Exception ex) {
 			// Eh.... just give up
