@@ -1,7 +1,7 @@
 package com.microsoft.example.servlet;
 
-import java.io.PrintWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.microsoft.example.*;
 import com.microsoft.example.models.*;
+import com.microsoft.exampledep.*;
 
 public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest request,
@@ -32,6 +33,13 @@ public class LoginServlet extends HttpServlet {
             
             float getTotalDriverFee = DataAccess.getTotalDriverFee(employee.getID());
             session.setAttribute("driverFeeTotal",getTotalDriverFee);
+
+            List<Route> routes = new ArrayList<Route>(fareList.size());
+            for (Fare fare : fareList) {
+                routes.add(new Route(fare.getPickup(), fare.getDropoff()));
+            }
+            int getTotalDriverDistance = DistanceCalculator.getTotalDistance(routes);
+            session.setAttribute("driverDistanceTotal",getTotalDriverDistance);
             
             request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
         }

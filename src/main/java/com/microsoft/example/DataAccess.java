@@ -42,10 +42,10 @@ public class DataAccess
 		catch (Exception ex) {
 			// Eh.... just give up
             ex.printStackTrace();
-			System.exit(-1);
+			throw new ExceptionInInitializerError(ex.toString());
 		}
 	}
-	
+
 	private static PreparedStatement LOGIN;
 	private static PreparedStatement FARES;
 	private static PreparedStatement GETTOTAL;
