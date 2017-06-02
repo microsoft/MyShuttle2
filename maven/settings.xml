@@ -1,0 +1,19 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      https://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <servers>
+    <server>
+        <id>nwcadence-visualstudio.com-maven</id>
+        <configuration>
+            <httpHeaders>
+                <property>
+                    <name>Authorization</name>
+                    <!--The generated token expires on or before 8/24/2017-->
+                    <value>Basic Y29saW5kZW1ib3Zza3k6ZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKU1V6STFOaUlzSW5nMWRDSTZJbTlQZG1ONk5VMWZOM0F0U0dwSlMyeEdXSG81TTNWZlZqQmFieUo5LmV5SnVZVzFsYVdRaU9pSXpNVEZtTkRZMllpMDBOamMzTFRRM1pqZ3RZVGs1TUMwNE1tUXpabVJpTUdOak1qTWlMQ0p6WTNBaU9pSjJjMjh1WkhKdmNGOTNjbWwwWlNCMmMyOHVjR0ZqYTJGbmFXNW5YM2R5YVhSbElpd2lZWFZwSWpvaVptSmxPV014TldVdE1UTTBaaTAwT0RGaExXRTVOR1F0TjJZMU1tVmhOR1kxT1RWa0lpd2ljMmxrSWpvaVltSXhOemd4TlRndE1UVXpZeTAwTnprMUxUZ3daV1F0TmpNNE9XUmxOalk0TURVd0lpd2lhWE56SWpvaVlYQndMblp6YzNCekxuWnBjM1ZoYkhOMGRXUnBieTVqYjIwaUxDSmhkV1FpT2lKaGNIQXVkbk56Y0hNdWRtbHpkV0ZzYzNSMVpHbHZMbU52Ylh4MmMyODZZV00zT0dZellUTXRPVEF4T1MwME5tVm1MV0k1WkdVdE5UWm1PRE0zWlRVd1lXWXdJaXdpYm1KbUlqb3hORGsxT0RJek5EYzVMQ0psZUhBaU9qRTFNRE0xT1RrME56bDkudlRwTVkwaFc2UUtxTEtUUkxkdGRmVFFRSVB0Z1V6SWtabFJqZEJsY2hiY3pFNTNKTlRiRlhNbDk5ZlItUWVfWnB6NlVHbEtka0VhYkR1dUpTZlJLdVMyMnpTdXBLSnNDM2xKNks3a1Jwb3dQT1NLWFlIMVpEaTltUVBuMmhZZ21nbm9OZFFKd3VKQWhLTjNWYktmRThwNVhRV1czUVpwbDZmS0NvUWpXREcxWnFCRUhSQUV2ZjdDNzdGQ29BeTRVY0pIR1lpV0hmWDFxVUxkT3VsZXNwS19xQmp5Nm9BRlA4LUg2dkpGYXA3eHhRVGoxd0U2ak8weW9RalhLRC14WFN1M1VrN1AwbGZReWpmLUk5LTN3czhfMWFPemJhV1d3OWZCYWtEWWlabFZkS29ZaHA5d3Q2dGdXcnBJQkFEcGhrTFg2d0RCcVFMejh5ZEd3MUE5WXNB</value>
+                </property>
+            </httpHeaders>
+        </configuration>
+    </server>
+  </servers>
+</settings>
