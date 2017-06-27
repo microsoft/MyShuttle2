@@ -76,8 +76,8 @@
   </dependencies>
   <repositories>
     <repository>
-      <id>nwcadence-visualstudio.com-maven</id>
-      <url>https://nwcadence.pkgs.visualstudio.com/_packaging/Maven/maven/v1</url>
+      <id><!-- paste in id of VSTS package feed --></id>
+      <url><!-- paste in url of VSTS package feed --></url>
       <releases>
         <enabled>true</enabled>
       </releases>
