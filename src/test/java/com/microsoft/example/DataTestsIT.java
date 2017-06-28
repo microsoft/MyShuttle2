@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import com.microsoft.example.models.*;
 
-public class DataTests {
+public class DataTestsIT {
     @Test
     public void seeIfFredCanLogin() {
         assertEquals(true, DataAccess.loginSuccessful("fred", "fredpassword"));

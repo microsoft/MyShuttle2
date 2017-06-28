@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class UITest {
+public class UITestIT {
  // private String baseUrl = "http://localhost:8080/myshuttledev";
    private String baseUrl=System.getProperty("webdriver.base.url");
   WebDriver driver = null;
