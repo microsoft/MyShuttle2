@@ -59,10 +59,11 @@
     </plugins>
   </build>
   <dependencies>
+
     <dependency>
       <groupId>com.microsoft.exampledep</groupId>
       <artifactId>MyShuttleCalc</artifactId>
-      <version>0.0.2</version>
+      <version>0.0.6</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
