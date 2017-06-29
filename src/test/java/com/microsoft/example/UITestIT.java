@@ -1,22 +1,23 @@
 package com.microsoft.example;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 public class UITestIT {
- // private String baseUrl = "http://localhost:8080/myshuttledev";
-   private String baseUrl=System.getProperty("webdriver.base.url");
+  //private String baseUrl = "http://localhost:8081/myshuttledev";
+  private String baseUrl=System.getProperty("webdriver.base.url");
   WebDriver driver = null;
   
-  @Before
+  @BeforeMethod
   public void crankUpDriver() {
-    driver = new FirefoxDriver();
+    driver = new PhantomJSDriver(DesiredCapabilities.phantomjs());
   }
   
   @Test
@@ -66,7 +67,7 @@ public class UITestIT {
     // Home
   }
   
-  @After
+  @AfterMethod
   public void shutdownTheDriver() {
     driver.quit();
     driver = null;
