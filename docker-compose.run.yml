@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  web:
+    image: __WebImageName__:__Tag__
+    depends_on:
+      - db
+    ports: 
+      - "__HostPort__:8080"
+  db:
+    image: __DbImageName__:__Tag__
+    expose:
+      - "3306"

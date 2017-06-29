@@ -28,18 +28,18 @@ public class LoginServlet extends HttpServlet {
             List<Fare> fareList = DataAccess.employeeFares(employee);
             session.setAttribute("employeeList", fareList);
             
-            float getTotalFareforDriver = DataAccess.getFareTotal(employee.getID());
-            session.setAttribute("fareTotal",getTotalFareforDriver);
+            float totalFareforDriver = DataAccess.getFareTotal(employee.getID());
+            session.setAttribute("fareTotal", totalFareforDriver);
             
-            float getTotalDriverFee = DataAccess.getTotalDriverFee(employee.getID());
-            session.setAttribute("driverFeeTotal",getTotalDriverFee);
+            float totalDriverFee = DataAccess.getTotalDriverFee(employee.getID());
+            session.setAttribute("driverFeeTotal", totalFareforDriver);
 
             List<Route> routes = new ArrayList<Route>(fareList.size());
             for (Fare fare : fareList) {
                 routes.add(new Route(fare.getPickup(), fare.getDropoff()));
             }
-            int getTotalDriverDistance = DistanceCalculator.getTotalDistance(routes);
-            session.setAttribute("driverDistanceTotal",getTotalDriverDistance);
+            int totalDriverDistance = DistanceCalculator.getTotalDistance(routes);
+            session.setAttribute("driverDistanceTotal", totalDriverDistance);
             
             request.getRequestDispatcher("/dashboard.jsp").forward(request, response);
         }
