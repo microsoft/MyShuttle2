@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.sql.*;
-import javax.sql.*;
 import com.microsoft.example.models.*;
 
 /**
@@ -13,11 +12,11 @@ import com.microsoft.example.models.*;
  * designed to be a simpler approach than Hibernate or JPA, by using
  * straight JDBC and hiding it.
  */
- 
- /**
+
+/**
  Comment added by Sachin
  **/
- 
+
 public class DataAccess
 {
 	// Some database-specific details we'll need
@@ -25,24 +24,32 @@ public class DataAccess
 	private static final String DB_URL = "jdbc:mysql://db:3306/MyShuttleDb";
 	private static final String DB_USER = "user";
 	private static final String DB_PASS = "password";
-	
+
 	private static Connection theConnection;
 	static {
 		try {
 			// Bootstrap driver into JVM
 			Class.forName(DB_DRIVER);
 
-			String conStr = System.getenv("MYSQLCONNSTR_MyShuttleDb");
-			if (conStr == null || conStr.trim().length() == 0) {
-				theConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-			} else {
-				theConnection = DriverManager.getConnection(conStr);
+			String dbServerUrl = System.getenv("MyShuttleDbServerUrl");
+			if (dbServerUrl == null || dbServerUrl.trim().length() == 0) {
+				dbServerUrl = DB_URL;
 			}
+			String dbUser = System.getenv("MyShuttleDbUser");
+			if (dbUser == null || dbUser.trim().length() == 0) {
+				dbUser = DB_USER;
+			}
+			String dbPassword = System.getenv("MyShuttleDbPassword");
+			if (dbPassword == null || dbPassword.trim().length() == 0) {
+				dbPassword = DB_PASS;
+			}
+
+			theConnection = DriverManager.getConnection(dbServerUrl, dbUser, dbPassword);
 		}
 		catch (Exception ex) {
 			// Eh.... just give up
-            ex.printStackTrace();
-			throw new ExceptionInInitializerError(ex.toString());
+			ex.printStackTrace();
+			throw new ExceptionInInitializerError("Something broke when initializing the connection: " + ex.toString());
 		}
 	}
 
@@ -68,7 +75,7 @@ public class DataAccess
 	public static boolean loginSuccessful(String employeeEmail, String employeePassword) {
 		return (login(employeeEmail, employeePassword) != null);
 	}
-	
+
 	/**
 	 * Retrieve an employee by username/email and password
 	 */
@@ -78,7 +85,7 @@ public class DataAccess
 
 			LOGIN.setString(1, employeeEmail);
 			LOGIN.setString(2, employeePassword);
-			
+
 			try (ResultSet rs = LOGIN.executeQuery()) {
 				if (rs.next()) {
 					Employee emp = new Employee(rs.getInt("id"), rs.getString("username"), rs.getString("password"));
@@ -96,69 +103,69 @@ public class DataAccess
 
 	/**
 	 * Return all the fares for a given Employee's ID #
-	 */	
+	 */
 	public static List<Fare> employeeFares(int empID) {
 		try {
 			FARES.clearParameters();
-	
+
 			FARES.setInt(1, empID);
-			
+
 			try (ResultSet rs = FARES.executeQuery()) {
-                List<Fare> results = new ArrayList<Fare>(20);
-                while (rs.next()) {
-                    results.add(new Fare(rs.getInt("id"), rs.getInt("emp_id"),
-                        rs.getString("pickup"), rs.getString("dropoff"),
-                        rs.getTimestamp("start"), rs.getTimestamp("end"),
-                        rs.getInt("fare_charge"), rs.getInt("driver_fee"),
-                        rs.getInt("passenger_rating"), rs.getInt("driver_rating")
-                    ));
-                }
-                return results;
-            }
+				List<Fare> results = new ArrayList<Fare>(20);
+				while (rs.next()) {
+					results.add(new Fare(rs.getInt("id"), rs.getInt("emp_id"),
+							rs.getString("pickup"), rs.getString("dropoff"),
+							rs.getTimestamp("start"), rs.getTimestamp("end"),
+							rs.getInt("fare_charge"), rs.getInt("driver_fee"),
+							rs.getInt("passenger_rating"), rs.getInt("driver_rating")
+					));
+				}
+				return results;
+			}
 		}
 		catch (SQLException sqlEx) {
 			sqlEx.printStackTrace();
 			return Collections.emptyList();
 		}
 	}
-	
+
 	/**
 	 * Return all the fares for a given Employee object
 	 */
 	public static List<Fare> employeeFares(Employee emp) {
 		return employeeFares(emp.getID());
 	}
-	
+
 	public static float getFareTotal(int empID){
 		try {
-		GETTOTAL.clearParameters();
-		
-		GETTOTAL.setInt(1, empID);
-		
-		ResultSet rs = GETTOTAL.executeQuery();
-		
-		if (rs.next()){		 return (rs.getInt("totalfare")/100.0f);}
-		else return -1;
-            }catch (SQLException sqlEx) {
-    			sqlEx.printStackTrace();
-    			return -1;
-    		}
-            
+			GETTOTAL.clearParameters();
+
+			GETTOTAL.setInt(1, empID);
+
+			ResultSet rs = GETTOTAL.executeQuery();
+
+			if (rs.next()){		 return (rs.getInt("totalfare")/100.0f);}
+			else return -1;
+		}catch (SQLException sqlEx) {
+			sqlEx.printStackTrace();
+			return -1;
+		}
+
 	}
 	public static float getTotalDriverFee(int empID){
 		try {
-		GETTOTAL.clearParameters();
-		
-		GETTOTAL.setInt(1, empID);
-		
-		ResultSet rs = GETTOTAL.executeQuery();
-		
-		if (rs.next()){		 return (rs.getInt("totaldriverfee")/100.0f);}
-		else return -1;
-            }catch (SQLException sqlEx) {
-    			sqlEx.printStackTrace();
-    			return -1;
-    		}
-            
+			GETTOTAL.clearParameters();
+
+			GETTOTAL.setInt(1, empID);
+
+			ResultSet rs = GETTOTAL.executeQuery();
+
+			if (rs.next()){		 return (rs.getInt("totaldriverfee")/100.0f);}
+			else return -1;
+		}catch (SQLException sqlEx) {
+			sqlEx.printStackTrace();
+			return -1;
+		}
+
 	}
 }
