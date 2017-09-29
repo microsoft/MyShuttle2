@@ -2,7 +2,7 @@ FROM mysql
 
 MAINTAINER me
 
-ENV MYSQL_ALLOW_EMPTY_PASSWORD="yes"
+ENV MYSQL_RANDOM_ROOT_PASSWORD="yes"
 
 ADD schema.sql /docker-entrypoint-initdb.d
 

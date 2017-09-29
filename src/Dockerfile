@@ -1,6 +1,6 @@
 FROM tomcat:9-jre8-alpine
 
-RUN apk --update add curl ca-certificates tar 
+RUN apk --update add curl ca-certificates tar mysql-client
 RUN set -x \
     && mkdir /home/mysql \
     && curl -fSL https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.40.tar.gz -o /home/mysql/mysql-connector.jar \
