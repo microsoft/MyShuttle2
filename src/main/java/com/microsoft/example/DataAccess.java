@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.sql.*;
+import java.util.Properties;
 import com.microsoft.example.models.*;
 
 /**
@@ -32,8 +33,24 @@ public class DataAccess
 			String dbServerUrl = String.format("jdbc:mysql://%s/%s", dbServer, "MyShuttleDb");
 			String dbUser = System.getenv("MyShuttleDbUser");
 			String dbPassword = System.getenv("MyShuttleDbPassword");
+			boolean useSSL = true;
+			String useSSLStr = System.getenv("MyShuttleDbUseSSL");
+			if (useSSLStr == null || useSSLStr == "") {
+				useSSL = false;
+			}
 
-			theConnection = DriverManager.getConnection(dbServerUrl, dbUser, dbPassword);
+			// Set connection properties.
+			Properties properties = new Properties();
+			properties.setProperty("user", dbUser);
+			properties.setProperty("password", dbPassword);
+			if (useSSL) {
+				properties.setProperty("useSSL", "true");
+				properties.setProperty("verifyServerCertificate", "true");
+				properties.setProperty("requireSSL", "false");
+			}
+
+			// get connection
+			theConnection = DriverManager.getConnection(dbServerUrl, properties);
 		}
 		catch (Exception ex) {
 			// Eh.... just give up

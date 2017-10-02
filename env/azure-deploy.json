@@ -22,20 +22,6 @@
 				"description": "Database administrator password"
 			}
 		},
-		"mySqlUser": {
-			"type": "string",
-			"minLength": 1,
-			"metadata": {
-				"description": "MySQL username"
-			}
-		},
-		"mySqlPassword": {
-			"type": "securestring",
-			"minLength": 8,
-			"metadata": {
-				"description": "MySQL password"
-			}
-		},
 		"databaseDTU": {
 			"type": "int",
 			"allowedValues": [
@@ -105,7 +91,7 @@
 		},
 		"dockerImagePort": {
 			"type": "int",
-			"defaultValue": 80,
+			"defaultValue": 8080,
 			"metadata": {
 				"description": "Container port to expose"
 			}
@@ -148,7 +134,7 @@
 				"siteConfig": {
 					"appSettings": [
 						{
-							"name": "PORT",
+							"name": "WEBSITES_PORT",
 							"value": "[parameters('dockerImagePort')]"
 						},
 						{
@@ -181,11 +167,15 @@
 						},
 						{
 							"name": "MyShuttleDbUser",
-							"value": "[parameters('mySqlUser')]"
+							"value": "[concat(parameters('administratorLogin'), '@', variables('serverName'))]"
 						},
 						{
 							"name": "MyShuttleDbPassword",
-							"value": "[parameters('mySqlPassword')]"
+							"value": "[parameters('administratorLoginPassword')]"
+						},
+						{
+							"name": "MyShuttleDbUseSSL",
+							"value": "true"
 						}
 					]
 				},
@@ -223,7 +213,7 @@
 						"siteConfig": {
 							"appSettings": [
 								{
-									"name": "PORT",
+									"name": "WEBSITES_PORT",
 									"value": "[parameters('dockerImagePort')]"
 								},
 								{
@@ -256,24 +246,28 @@
 								},
 								{
 									"name": "MyShuttleDbUser",
-									"value": "[parameters('mySqlUser')]"
+									"value": "[concat(parameters('administratorLogin'), '@', variables('serverName'))]"
 								},
 								{
 									"name": "MyShuttleDbPassword",
-									"value": "[parameters('mySqlPassword')]"
+									"value": "[parameters('administratorLoginPassword')]"
+								},
+								{
+									"name": "MyShuttleDbUseSSL",
+									"value": "true"
 								}
 							]
 						}
 					},
 					"tags": {
-						"[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', parameters('siteName'))]": "Resource"
+						"[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('hostingPlanName'))]": "Resource"
 					}
 				}
 			],
 			"apiVersion": "2016-08-01",
 			"location": "[resourceGroup().location]",
 			"dependsOn": [
-				"[variables('hostingPlanName')]"
+				"[resourceId('Microsoft.Web/serverfarms/', variables('hostingPlanName'))]"
 			]
 		},
 		{

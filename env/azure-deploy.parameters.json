@@ -16,12 +16,6 @@
     },
     "administratorLoginPassword": {
       "value": ""
-    },
-    "mySqlUser": {
-      "value": ""
-    },
-    "mySqlPassword": {
-      "value": null
     }
   }
 }
