@@ -154,10 +154,6 @@
 							"value": "[listCredentials(resourceId(variables('acrResourceGroup'), 'Microsoft.ContainerRegistry/registries', parameters('registryName')), '2017-03-01').passwords[0].value]"
 						},
 						{
-							"name": "DOCKER_ENABLE_CI",
-							"value": "false"
-						},
-						{
 							"name": "APPLICATION_INSIGHTS_IKEY",
 							"value": "[reference(concat('Microsoft.Insights/components/', variables('prodAppInsightsName')), '2015-05-01').InstrumentationKey]"
 						},
@@ -194,7 +190,7 @@
 					"properties": {
 						"appSettingNames": [
 							"APPLICATION_INSIGHTS_IKEY",
-							"DOCKER_ENABLE_CI"
+							"DOCKER_CUSTOM_IMAGE_NAME"
 						]
 					}
 				},
@@ -231,10 +227,6 @@
 								{
 									"name": "DOCKER_REGISTRY_SERVER_PASSWORD",
 									"value": "[listCredentials(resourceId(variables('acrResourceGroup'), 'Microsoft.ContainerRegistry/registries', parameters('registryName')), '2017-03-01').passwords[0].value]"
-								},
-								{
-									"name": "DOCKER_ENABLE_CI",
-									"value": "true"
 								},
 								{
 									"name": "APPLICATION_INSIGHTS_IKEY",

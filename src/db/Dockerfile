@@ -1,9 +1,6 @@
 FROM mysql
 
-MAINTAINER me
-
 ENV MYSQL_RANDOM_ROOT_PASSWORD="yes"
-
 # this is meant for debugging only - DO NOT use in production!
 #ENV MYSQL_ROOT_PASSWORD="P@ssw0rd"
 

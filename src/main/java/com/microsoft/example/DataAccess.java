@@ -35,7 +35,7 @@ public class DataAccess
 			String dbPassword = System.getenv("MyShuttleDbPassword");
 			boolean useSSL = true;
 			String useSSLStr = System.getenv("MyShuttleDbUseSSL");
-			if (useSSLStr == null || useSSLStr == "") {
+			if (useSSLStr == null || useSSLStr.length() == 0 || useSSLStr.toLowerCase().equals("false")) {
 				useSSL = false;
 			}
 

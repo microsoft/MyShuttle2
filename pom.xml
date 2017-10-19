@@ -92,7 +92,7 @@
     <dependency>
       <groupId>com.microsoft.exampledep</groupId>
       <artifactId>MyShuttleCalc</artifactId>
-      <version>0.0.6</version>
+      <version>0.0.2</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -129,8 +129,19 @@
       <version>6.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.microsoft.azure</groupId>
+      <artifactId>applicationinsights-web</artifactId>
+      <!-- or applicationinsights-core for bare API -->
+      <version>1.0.10</version>
+    </dependency>
   </dependencies>
   <repositories>
+    <repository>
+      <id>central</id>
+      <name>Central</name>
+      <url>http://repo1.maven.org/maven2</url>
+    </repository>
     <repository>
       <id><!-- paste in id of VSTS package feed --></id>
       <url><!-- paste in url of VSTS package feed --></url>

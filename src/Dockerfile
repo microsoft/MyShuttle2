@@ -14,5 +14,7 @@ RUN set -x \
 
 RUN export CLASSPATH=$CLASSPATH:/usr/share/java/mysql-connector-java.jar
 
+ENV APPLICATION_INSIGHTS_IKEY="your key"
+
 ADD ./target/myshuttledev.war /usr/local/tomcat/webapps/myshuttledev.war
 
