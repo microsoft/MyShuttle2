@@ -3,14 +3,14 @@ package com.microsoft.example;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.*;
 import com.microsoft.example.models.*;
-import java.lang.reflect.Method;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.*;
 
 public class FaresTest {
   
@@ -24,7 +24,7 @@ public class FaresTest {
   public Date startTime;
   public Date endTime;
   
-  @Before
+  @BeforeMethod
   public void setupStartEndTimes() throws Exception {
     startTime = sdf.parse("Jun 3, 2009 7:03:47 AM");
     endTime = sdf.parse("Jun 3, 2009 7:35:10 AM");      
@@ -88,7 +88,7 @@ public class FaresTest {
     assertEquals(2.50f * 5, totalFeesInDollars, 0.1f);
   }
   
-    @Test
+  @Test
   public void fareTotal() 
     throws ParseException {
 
@@ -123,8 +123,3 @@ public class FaresTest {
   }
   
 }
-
-
-
-
-

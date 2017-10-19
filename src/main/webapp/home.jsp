@@ -48,15 +48,14 @@
             </tr>
           </c:forEach>
 
-<!--
            <tr>
-            <td colspan="5" align="right"><strong>Total</strong></td>
+            <td colspan="4" align="right"><strong>Total</strong></td>
+            <td><strong><c:out value="${driverDistanceTotal}"></c:out> mi</strong></td>
             <td><strong>$ <c:out value="${fareTotal}"></c:out></strong></td>
             <td><strong>$ <c:out value="${driverFeeTotal}"></c:out></strong></td>
             <td></td>
             <td></td>            
             </tr>
--->
 
                             </tbody>
                         </table>

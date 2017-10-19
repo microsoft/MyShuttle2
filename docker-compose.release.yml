@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  web:
+    image: __WebImageName__:__Tag__
+    depends_on:
+      - db
+    ports: 
+      - "__HostPort__:8080"
+    environment:
+      - MyShuttleDbServer=__DbServer__
+      - MyShuttleDbPassword=__DbPassword__
+      - MyShuttleDbUser=__DbUserName__
+  db:
+    image: __DbImageName__:__Tag__
+    environment:
+      - MYSQL_USER=__DbUserName__
+      - MYSQL_PASSWORD=__DbPassword__
+      - MYSQL_DATABASE=MyShuttleDb
+    expose:
+      - "3306"
